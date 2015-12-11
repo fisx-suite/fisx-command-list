@@ -10,7 +10,7 @@ exports.desc = 'list installed component packages';
 exports.options = {
     '-h, --help': 'print this help message',
     '-r, --root <path>': 'set project root',
-    '-u, --update': 'force install latest version on conflict'
+    '-u, --update': 'fetch latest version information'
 };
 
 exports.run = function (argv, cli, env) {
