@@ -22,7 +22,7 @@ exports.run = function (argv, cli, env) {
     var listComponent = argv._[0];
     var options = {
         root: env.cwd,
-        package: listComponent,
+        name: listComponent,
         availableUpdate: argv.update || argv.u
     };
     return pkgManage.initProjectRoot(env.configNameSearch[0], options, fis)
