@@ -11,6 +11,12 @@ fisx-command-list
 fisx list
 ```
 
+### List specified component installed information
+
+```shell
+fisx list er
+```
+
 ### Show available update information
 
 ```shell
