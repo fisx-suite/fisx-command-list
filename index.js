@@ -5,7 +5,7 @@
 
 var pkgManage = require('fisx-package');
 
-exports.name = 'list';
+exports.name = 'list <component>';
 exports.desc = 'list installed component packages';
 exports.options = {
     '-h, --help': 'print this help message',
@@ -18,8 +18,11 @@ exports.run = function (argv, cli, env) {
         return cli.help(exports.name, exports.options);
     }
 
+    argv._.shift();
+    var listComponent = argv._[0];
     var options = {
         root: env.cwd,
+        package: listComponent,
         availableUpdate: argv.update || argv.u
     };
     return pkgManage.initProjectRoot(env.configNameSearch[0], options, fis)
