@@ -10,7 +10,8 @@ exports.desc = 'list installed component packages';
 exports.options = {
     '-h, --help': 'print this help message',
     '-r, --root <path>': 'set project root',
-    '-u, --update': 'fetch latest version information'
+    '-u, --update': 'fetch latest version information',
+    '--detail': 'show detail package information'
 };
 
 exports.run = function (argv, cli, env) {
@@ -23,7 +24,8 @@ exports.run = function (argv, cli, env) {
     var options = {
         root: env.cwd,
         name: listComponent,
-        availableUpdate: argv.update || argv.u
+        availableUpdate: argv.update || argv.u,
+        showDetail: argv.detail
     };
     return pkgManage.initProjectRoot(env.configNameSearch[0], options, fis)
         .then(pkgManage.loadUserConfig.bind(this, env.configNameSearch[0], options, fis))
