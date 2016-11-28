@@ -11,6 +11,7 @@ exports.options = {
     '-h, --help': 'print this help message',
     '-r, --root <path>': 'set project root',
     '-u, --update': 'fetch latest version information',
+    '--depth <number>': 'list package dependency info depth, default 8',
     '--detail': 'show package listed detail info'
 };
 
@@ -21,11 +22,15 @@ exports.run = function (argv, cli, env) {
 
     argv._.shift();
     var listComponent = argv._[0];
+    var depth = argv.depth || 8;
+    depth = parseInt(depth, 10);
+    (depth <= 0) && (depth = 1);
     var options = {
         root: env.cwd,
         name: listComponent,
         availableUpdate: argv.update || argv.u,
-        style: argv.detail ? 'list' : 'tree'
+        style: argv.detail ? 'list' : 'tree',
+        depth: depth
     };
     return pkgManage.initProjectRoot(env.configNameSearch[0], options, fis)
         .then(pkgManage.loadUserConfig.bind(this, env.configNameSearch[0], options, fis))
