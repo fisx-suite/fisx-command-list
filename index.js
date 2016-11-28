@@ -12,7 +12,8 @@ exports.options = {
     '-r, --root <path>': 'set project root',
     '-u, --update': 'fetch latest version information',
     '--depth <number>': 'list package dependency info depth, default 8',
-    '--detail': 'show package listed detail info'
+    '--detail': 'show package listed detail info',
+    '--open': 'open specify package repository url in default browser'
 };
 
 exports.run = function (argv, cli, env) {
@@ -30,7 +31,8 @@ exports.run = function (argv, cli, env) {
         name: listComponent,
         availableUpdate: argv.update || argv.u,
         style: argv.detail ? 'list' : 'tree',
-        depth: depth
+        depth: depth,
+        openRepository: argv.open
     };
     return pkgManage.initProjectRoot(env.configNameSearch[0], options, fis)
         .then(pkgManage.loadUserConfig.bind(this, env.configNameSearch[0], options, fis))
