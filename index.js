@@ -11,7 +11,7 @@ exports.options = {
     '-h, --help': 'print this help message',
     '-r, --root <path>': 'set project root',
     '-u, --update': 'fetch latest version information',
-    '--style': 'show package listed style, support `list` and `tree` style, `tree` by default'
+    '--detail': 'show package listed detail info'
 };
 
 exports.run = function (argv, cli, env) {
@@ -25,7 +25,7 @@ exports.run = function (argv, cli, env) {
         root: env.cwd,
         name: listComponent,
         availableUpdate: argv.update || argv.u,
-        style: argv.style
+        style: argv.detail ? 'list' : 'tree'
     };
     return pkgManage.initProjectRoot(env.configNameSearch[0], options, fis)
         .then(pkgManage.loadUserConfig.bind(this, env.configNameSearch[0], options, fis))
