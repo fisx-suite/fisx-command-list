@@ -13,7 +13,8 @@ exports.options = {
     '-u, --update': 'fetch latest version information',
     '--depth <number>': 'list package dependency info depth, default 8',
     '--detail': 'show package listed detail info',
-    '--open': 'open specify package repository url in default browser'
+    '--open': 'open specify package repository url in default browser',
+    '--registry <url>': 'set the npm default registry to use'
 };
 
 exports.run = function (argv, cli, env) {
@@ -32,7 +33,8 @@ exports.run = function (argv, cli, env) {
         availableUpdate: argv.update || argv.u,
         style: argv.detail ? 'list' : 'tree',
         depth: depth,
-        openRepository: argv.open
+        openRepository: argv.open,
+        registry: argv.registry
     };
     return pkgManage.initProjectRoot(env.configNameSearch[0], options, fis)
         .then(pkgManage.loadUserConfig.bind(this, env.configNameSearch[0], options, fis))
